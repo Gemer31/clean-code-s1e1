@@ -17,17 +17,19 @@ const createNewTaskElement = function (taskName) {
   const deleteButtonImg = document.createElement('img');
 
   label.innerText = taskName;
-  label.className = 'task';
+  label.className = 'task task__label';
 
   checkBox.type = 'checkbox';
+  checkBox.className = 'task__checkbox';
+
   editInput.type = 'text';
-  editInput.className = 'task';
+  editInput.className = 'task task__input';
 
   editButton.innerText = 'Edit';
-  editButton.className = 'edit';
+  editButton.className = 'button edit';
 
-  deleteButton.className = 'delete';
   deleteButtonImg.src = 'assets/remove.svg';
+  deleteButton.className = 'button delete';
 
   deleteButton.append(deleteButtonImg);
   listItem.append(checkBox, label, editInput, editButton, deleteButton);
@@ -52,14 +54,14 @@ const editTask = function () {
   const label = listItem.querySelector('label');
   const editBtn = listItem.querySelector('.edit');
 
-  if (listItem.classList.contains('editMode')) {
+  if (listItem.classList.contains('edit-mode')) {
     label.innerText = editInput.value;
     editBtn.innerText = 'Edit';
   } else {
     editInput.value = label.innerText;
     editBtn.innerText = 'Save';
   }
-  listItem.classList.toggle('editMode');
+  listItem.classList.toggle('edit-mode');
 };
 
 const deleteTask = function () {

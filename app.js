@@ -75,11 +75,7 @@ const checkboxEvent = function (type) {
   return function () {
     const listItem = this.parentNode;
 
-    (type === COMPLETED_TASKS_LIST
-        ? completedTasksHolder
-        : incompleteTasksHolder
-    ).appendChild(listItem);
-
+    (type === COMPLETED_TASKS_LIST ? completedTasksHolder : incompleteTasksHolder).appendChild(listItem);
     bindTaskEvents(
       listItem,
       checkboxEvent(type === COMPLETED_TASKS_LIST ? INCOMPLETE_TASKS_LIST : COMPLETED_TASKS_LIST),
@@ -98,11 +94,11 @@ const bindTaskEvents = function (taskListItem, checkboxEventHandler) {
 }
 
 function fillTasksList(type) {
-  const holder = type === COMPLETED_TASKS_LIST ? completedTasksHolder : incompleteTasksHolder;
+  const tasksHolder = type === COMPLETED_TASKS_LIST ? completedTasksHolder : incompleteTasksHolder;
   const checkBoxEventHandler = checkboxEvent(type === COMPLETED_TASKS_LIST ? INCOMPLETE_TASKS_LIST : COMPLETED_TASKS_LIST);
 
-  for (let i = 0; i < holder.children.length; i++) {
-    bindTaskEvents(holder.children[i], checkBoxEventHandler);
+  for (let i = 0; i < tasksHolder.children.length; i++) {
+    bindTaskEvents(tasksHolder.children[i], checkBoxEventHandler);
   }
 }
 

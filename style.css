@@ -55,19 +55,6 @@ body {
 	color: #3a3a3a;
 }
 
-#new-task {
-	width: 318px;
-}
-
-.new-task__wrapper {
-	display: flex;
-}
-
-.new-task__label {
-	display: block;
-	margin: 0 0 20px;
-}
-
 .list {
 	margin: 0;
 	padding: 0;
@@ -91,6 +78,19 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+#new-task {
+	width: 318px;
+}
+
+.new-task__wrapper {
+	display: flex;
+}
+
+.new-task__label {
+	display: block;
+	margin-bottom: 20px;
 }
 
 .task {

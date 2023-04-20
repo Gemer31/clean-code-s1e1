@@ -8,7 +8,6 @@ const completedTasksHolder = document.getElementById('completed-tasks');
 
 const createNewTaskElement = function (taskName) {
   const listItem = document.createElement('li');
-
   const checkBox = document.createElement('input');
   const label = document.createElement('label');
   const editInput = document.createElement('input');
@@ -29,9 +28,12 @@ const createNewTaskElement = function (taskName) {
   editButton.className = 'button edit';
 
   deleteButtonImg.src = 'assets/remove.svg';
-  deleteButton.className = 'button delete';
+  deleteButtonImg.className = 'delete-img';
 
+  deleteButton.className = 'button delete';
   deleteButton.append(deleteButtonImg);
+
+  listItem.className = 'list-item';
   listItem.append(checkBox, label, editInput, editButton, deleteButton);
 
   return listItem;
@@ -50,16 +52,16 @@ const addTask = function () {
 
 const editTask = function () {
   const listItem = this.parentNode;
-  const editInput = listItem.querySelector('input[type=text]');
-  const label = listItem.querySelector('label');
-  const editBtn = listItem.querySelector('.edit');
+  const editInput = listItem.querySelector('.task__input');
+  const label = listItem.querySelector('.task__label');
+  const editButton = listItem.querySelector('.edit');
 
   if (listItem.classList.contains('edit-mode')) {
     label.innerText = editInput.value;
-    editBtn.innerText = 'Edit';
+    editButton.innerText = 'Edit';
   } else {
     editInput.value = label.innerText;
-    editBtn.innerText = 'Save';
+    editButton.innerText = 'Save';
   }
   listItem.classList.toggle('edit-mode');
 };
@@ -86,9 +88,9 @@ const checkboxEvent = function (type) {
 }
 
 const bindTaskEvents = function (taskListItem, checkboxEventHandler) {
-  const checkBox = taskListItem.querySelector('input[type=checkbox]');
-  const editButton = taskListItem.querySelector('button.edit');
-  const deleteButton = taskListItem.querySelector('button.delete');
+  const checkBox = taskListItem.querySelector('.task__checkbox');
+  const editButton = taskListItem.querySelector('.edit');
+  const deleteButton = taskListItem.querySelector('.delete');
 
   editButton.onclick = editTask;
   deleteButton.onclick = deleteTask;
@@ -106,7 +108,6 @@ function fillTasksList(type) {
 
 fillTasksList(INCOMPLETE_TASKS_LIST);
 fillTasksList(COMPLETED_TASKS_LIST);
-
 addButton.addEventListener('click', addTask);
 
 //TODO: prevent creation of empty tasks.
